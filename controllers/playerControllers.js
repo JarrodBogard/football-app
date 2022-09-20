@@ -27,7 +27,7 @@ const show = (req, res) => {
 
 const create = (req, res) => {
   const { user_id, first_name, last_name } = req.body;
-  let sql = `INSERT INTO ?? (??, ??, ??) VALUES ('?','?','?')`;
+  let sql = `INSERT INTO ?? (??, ??, ??) VALUES ("?","?","?")`;
   sql = mysql.format(sql, [
     "players",
     "user_id",
