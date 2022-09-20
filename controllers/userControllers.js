@@ -47,7 +47,7 @@ const showPlayersByUser = (req, res) => {
 
 const create = (req, res) => {
   const { username, password, email } = req.body;
-  let sql = `INSERT INTO ?? (??, ??, ??) VALUES ("?", "?", "?")`;
+  let sql = `INSERT INTO ?? (??, ??, ??) VALUES ('?', '?', '?')`;
   sql = mysql.format(sql, [
     "users",
     "username",
