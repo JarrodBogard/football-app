@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   list,
   show,
+  showPlayersByUserId,
   create,
   update,
   remove,
@@ -10,6 +11,7 @@ const {
 
 router.get("/", list);
 router.get("/:id", show);
+router.get("/:id/users", showPlayersByUserId);
 router.post("/", create);
 router.put("/:id", update);
 router.delete("/:id", remove);

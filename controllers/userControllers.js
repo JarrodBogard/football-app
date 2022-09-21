@@ -25,24 +25,47 @@ const show = (req, res) => {
   });
 };
 
+// const showPlayersByUser = (req, res) => {
+//   const { id } = req.params;
+//   let sql = `SELECT * FROM ?? JOIN ?? WHERE ?? = ? AND ?? = ?`;
+//   sql = mysql.format(sql, [
+//     "players",
+//     "users",
+//     "players.user_id",
+//     id,
+//     "users.id",
+//     id,
+//   ]);
+//   pool.query(sql, (err, rows) => {
+//     if (err) {
+//       console.log({ message: "Error occurred: " + err });
+//       return res.status(500).send("An unexpected error occurred");
+//     }
+//     res.json(rows);
+//   });
+// };
+
 const showPlayersByUser = (req, res) => {
   const { id } = req.params;
-  let sql = `SELECT * FROM ?? JOIN ?? WHERE ?? = ? AND ?? = ?`;
-  sql = mysql.format(sql, [
-    "players",
-    "users",
-    "players.user_id",
-    id,
-    "users.id",
-    id,
-  ]);
-  pool.query(sql, (err, rows) => {
-    if (err) {
-      console.log({ message: "Error occurred: " + err });
-      return res.status(500).send("An unexpected error occurred");
+  // let sql = `SELECT * FROM ?? JOIN ?? WHERE ?? = ? AND ?? = ?`;
+  // sql = mysql.format(sql, [
+  //   "players",
+  //   "users",
+  //   "players.user_id",
+  //   id,
+  //   "users.id",
+  //   id,
+  // ]);
+  pool.query(
+    `SELECT * FROM players JOIN users WHERE players.user_id = ${id} AND users.id = ${id}`,
+    (err, rows) => {
+      if (err) {
+        console.log({ message: "Error occurred: " + err });
+        return res.status(500).send("An unexpected error occurred");
+      }
+      res.json(rows);
     }
-    res.json(rows);
-  });
+  );
 };
 
 const create = (req, res) => {

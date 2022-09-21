@@ -25,6 +25,19 @@ const show = (req, res) => {
   });
 };
 
+const showPlayersByUserId = (req, res) => {
+  const { id } = req.params;
+  let sql = `SELECT * FROM ?? WHERE ?? = ?`;
+  sql = mysql.format(sql, ["players", "players.user_id", id]);
+  pool.query(sql, (err, rows) => {
+    if (err) {
+      console.log({ message: "Error occurred: " + err });
+      return res.status(500).send("An unexpected error occurred");
+    }
+    res.json(rows);
+  });
+};
+
 const create = (req, res) => {
   const { user_id, first_name, last_name } = req.body;
   let sql = `INSERT INTO ?? (??, ??, ??) VALUES ("${user_id}","${first_name}","${last_name}")`;
@@ -73,6 +86,7 @@ const remove = (req, res) => {
 module.exports = {
   list,
   show,
+  showPlayersByUserId,
   create,
   update,
   remove,
