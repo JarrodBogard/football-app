@@ -50,12 +50,12 @@ const create = (req, res) => {
     first_name,
     last_name,
   ]);
-  pool.query(sql, (err, row) => {
+  pool.query(sql, (err, players) => {
     if (err) {
       console.log({ message: "Error occurred: " + err });
       return res.status(500).send("An unexpected error occurred");
     }
-    res.json(row);
+    res.json(players.row);
   });
 };
 
