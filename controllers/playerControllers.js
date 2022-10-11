@@ -55,7 +55,7 @@ const create = (req, res) => {
       console.log({ message: "Error occurred: " + err });
       return res.status(500).send("An unexpected error occurred");
     }
-    res.json(row);
+    res.json(req.body);
   });
 };
 
