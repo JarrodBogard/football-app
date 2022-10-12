@@ -41,19 +41,18 @@ const showPlayersByUserId = (req, res) => {
 
 const create = (req, res) => {
   const { user_id, first_name, last_name } = req.body;
-  let emptyFields = [];
 
-  if (!first_name) {
-    emptyFields.push("First name");
-  }
-  if (!last_name) {
-    emptyFields.push("Last name");
-  }
-  if (emptyFields > 0) {
-    return res
-      .send(400)
-      .json({ err: "Please include first and last name of player" });
-  }
+  // let emptyFields = [];
+
+  // if (!first_name) {
+  //   emptyFields.push("First name");
+  // }
+  // if (!last_name) {
+  //   emptyFields.push("Last name");
+  // }
+  // if (emptyFields > 0) {
+  //   return res.send(400).json({ err: "Please include first and last name of player" });
+  // }
 
   let sql = `INSERT INTO ?? (??, ??, ??) VALUES ("${user_id}","${first_name}","${last_name}")`;
   sql = mysql.format(sql, [
