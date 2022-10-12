@@ -58,8 +58,8 @@ const create = (req, res) => {
     }
 
     // res.json(row);
-    // res.json({ first_name, last_name, user_id, id: row.insertId });
-    res.json(req.body);
+    // res.json(req.body);
+    res.json({ first_name, last_name, user_id, id: row.insertId });
   });
 };
 
