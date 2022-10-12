@@ -58,7 +58,8 @@ const create = (req, res) => {
     }
 
     // res.json(row);
-    res.json({ first_name, last_name, user_id, id: row.insertId });
+    // res.json({ first_name, last_name, user_id, id: row.insertId });
+    res.json(req.body);
   });
 };
 
@@ -75,14 +76,16 @@ const update = (req, res) => {
 };
 
 const remove = (req, res) => {
+  const { id } = req.params;
   let sql = `DELETE FROM ?? WHERE ?? = ?`;
   sql = mysql.format(sql, ["players", "id", req.params.id]);
-  pool.query(sql, (err, row) => {
+  pool.query(sql, (err, row, fields) => {
     if (err) {
       console.log({ message: "Error occurred: " + err });
       return res.status(500).send("An unexpected error occurred");
     }
-    res.json(row);
+    // res.json(row);
+    res.json(id);
   });
 };
 
