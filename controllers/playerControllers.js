@@ -41,6 +41,20 @@ const showPlayersByUserId = (req, res) => {
 
 const create = (req, res) => {
   const { user_id, first_name, last_name } = req.body;
+  let emptyFields = [];
+
+  if (!first_name) {
+    emptyFields.push("First name");
+  }
+  if (!last_name) {
+    emptyFields.push("Last name");
+  }
+  if (emptyFields > 0) {
+    return res
+      .send(400)
+      .json({ err: "Please include first and last name of player" });
+  }
+
   let sql = `INSERT INTO ?? (??, ??, ??) VALUES ("${user_id}","${first_name}","${last_name}")`;
   sql = mysql.format(sql, [
     "players",
@@ -51,7 +65,7 @@ const create = (req, res) => {
     first_name,
     last_name,
   ]);
-  pool.query(sql, (err, row) => {
+  pool.query(sql, (err, row, fields) => {
     if (err) {
       console.log({ message: "Error occurred: " + err });
       return res.status(500).send("An unexpected error occurred");
