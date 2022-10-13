@@ -30,7 +30,9 @@ const login = async (req, res) => {
 
     if (match) {
       const token = createToken(rows.id);
-      res.json({ rows, token });
+      // const {id, username, password} = rows[0]
+      // res.json({id, username, password, token})
+      res.json(rows);
     }
   });
 };
