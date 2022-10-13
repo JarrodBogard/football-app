@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { createPool } = require("mysql");
 
 const requireAuth = async (req, res, next) => {
   const { authorization } = req.headers;

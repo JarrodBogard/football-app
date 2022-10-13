@@ -11,7 +11,7 @@ const {
 
 const requireAuth = require("../middleware/requireAuth");
 
-router.use(requireAuth);
+// router.use(requireAuth);
 
 router.get("/", list);
 router.get("/:id", show);
