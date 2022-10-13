@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const saltRounds = 10;
 
 const createToken = (id) => {
+  console.log(id);
   return jwt.sign({ id }, process.env.SECRET, { expiresIn: "3d" });
 };
 
@@ -30,10 +31,10 @@ const login = async (req, res) => {
     if (!match) throw Error("Invalid Password");
 
     if (match) {
-      const token = createToken(rows.id);
-      // const {id, username, password} = rows[0]
-      // res.json({id, username, password, token})
-      res.json({ rows, token });
+      const { id, username, password } = rows[0];
+      const token = createToken(id);
+      res.json({ id, username, password, token });
+      // res.json({ rows, token });
     }
   });
 };
