@@ -9,10 +9,6 @@ const {
   remove,
 } = require("../controllers/playerControllers");
 
-// const requireAuth = require("../middleware/requireAuth");
-
-// router.use(requireAuth);
-
 router.get("/", list);
 router.get("/:id", show);
 router.get("/:id/users", showPlayersByUserId);
