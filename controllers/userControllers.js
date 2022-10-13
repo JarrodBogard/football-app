@@ -32,7 +32,7 @@ const login = async (req, res) => {
       const token = createToken(rows.id);
       // const {id, username, password} = rows[0]
       // res.json({id, username, password, token})
-      res.json(rows);
+      res.json({ rows, token });
     }
   });
 };
