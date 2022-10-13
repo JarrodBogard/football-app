@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const requireAuth = async (req, res, next) => {
+const requireAuth = (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization)
