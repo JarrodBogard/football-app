@@ -26,6 +26,7 @@ const login = async (req, res) => {
 
     const hash = rows[0].password;
     const match = bcrpyt.compare(password, hash);
+
     if (!match) throw Error("Invalid Password");
 
     if (match) {

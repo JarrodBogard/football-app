@@ -1,6 +1,5 @@
 const pool = require("../sql/connection");
 const mysql = require("mysql");
-const { players } = require("../data/data");
 
 const list = (req, res) => {
   let sql = `SELECT * FROM ??`;
