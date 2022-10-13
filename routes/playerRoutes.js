@@ -9,7 +9,7 @@ const {
   remove,
 } = require("../controllers/playerControllers");
 
-const requireAuth = require("../middleware/requireAuth");
+// const requireAuth = require("../middleware/requireAuth");
 
 // router.use(requireAuth);
 
