@@ -8,13 +8,19 @@ const requireAuth = (req, res, next) => {
 
   const token = authorization.split(" ")[1];
 
-  const { id } = jwt.verify(token, process.env.SECRET);
-  console.log(id);
+  try {
+    const { id } = jwt.verify(token, process.env.SECRET);
+    console.log(id);
 
-  req.user = { id };
-  console.log(req.user);
+    req.user = { id };
+    console.log(req.user);
+    console.log(req.user.id);
 
-  next();
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({ error: "Request is not authorized" });
+  }
 };
 
 module.exports = requireAuth;
